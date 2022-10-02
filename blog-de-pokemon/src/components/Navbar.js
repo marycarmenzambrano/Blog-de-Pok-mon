@@ -6,7 +6,11 @@ const Navbar = () => {
 
     return (
      <nav>
-        <img src= {imgUrl}></img>
+        <div/>
+            <div>
+        <img src= {imgUrl} alt= "pokeapi-logo" className="navbar-image" ></img>
+            </div>
+        <div>Favorites🖤</div>
     </nav>
         
     );

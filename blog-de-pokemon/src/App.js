@@ -1,6 +1,7 @@
 import React from "react";
 import './App.css';
 import Navbar from "./components/Navbar";
+import Searcbar from "./components/Searcbar";
 
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
     <div>
       <Navbar/>
     <div className="App">
+      <Searcbar/>
 
 
 
