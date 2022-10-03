@@ -1,12 +1,18 @@
 import React from "react";
+const {useState} = React;
 
 const Searchbar = () => {
-    let search = "";
+    const [search, setSearch] = useState('');
 
-    const onChange = (evt) =>{
-        console.log(evt.target.value);
-        search = evt.target.value;
+    const onChange = (e) =>{
+        setSearch = (e.target.value);
     }
+
+    const onClick = (e) =>{
+        console.log('Apretando boton');
+
+    }
+
 
     return (
     <div>
@@ -14,9 +20,14 @@ const Searchbar = () => {
             <input placeholder="Buscar Pokemon"
             onChange= {onchange}></input>
             
+            
+            
+            
         </div>
 
-        <div>{search}</div>
+        <div>
+            <button onClick={onClick}>Buscar</button>
+        </div>
     </div>
     );
 };
