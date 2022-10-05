@@ -1,7 +1,7 @@
 import React from "react";
 import './App.css';
 import Navbar from "./components/Navbar";
-import Searcbar from "./components/Searcbar";
+import Searchbar from "./components/Searchbar";
 
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
     <div>
       <Navbar/>
     <div className="App">
-      <Searcbar/>
+      <Searchbar/>
 
 
 

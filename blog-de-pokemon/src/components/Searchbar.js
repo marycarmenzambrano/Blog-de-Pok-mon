@@ -1,5 +1,7 @@
 import React from "react";
+import { searchPokemon } from "../api";
 const {useState} = React;
+
 
 const Searchbar = () => {
     const [search, setSearch] = useState('');
@@ -8,10 +10,11 @@ const Searchbar = () => {
         setSearch = (e.target.value);
     }
 
-    const onClick = (e) =>{
-        console.log('Apretando boton');
+    const onClick = async (e) =>{
+        const data = await searchPokemon(search);
+        console.log(data);
 
-    }
+    };
 
 
     return (
