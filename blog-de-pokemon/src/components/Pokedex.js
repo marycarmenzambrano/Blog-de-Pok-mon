@@ -11,7 +11,7 @@ const Pokedex = (props) => {
             <div className="pokedex-grid">
                 {pokemons.map((pokemon,idx) =>{
                     return(
-                      <div>{pokemon.name}</div>
+                      <div key={pokemon.name} >#{idx+1}: {pokemon.name}</div>
                     )
                 })}
             </div>

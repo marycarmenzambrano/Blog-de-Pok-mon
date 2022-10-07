@@ -14,6 +14,7 @@ export default function App() {
   const fetchPokemons = async () => {
     try {
         const data = await getPokemons();
+        console.log(data.results);
         setPokemons(data.results);
     } catch(err){
 
