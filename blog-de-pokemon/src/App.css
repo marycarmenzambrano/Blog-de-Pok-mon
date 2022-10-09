@@ -40,7 +40,7 @@ nav{
 }
 
 
-.searchbar input{
+.searchbar input:focus {
   outline: none;
 }
 

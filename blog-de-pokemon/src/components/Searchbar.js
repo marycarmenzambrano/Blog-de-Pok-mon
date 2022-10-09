@@ -8,8 +8,8 @@ const Searchbar = () => {
     const [pokemon, setPokemon] = useState();
 
     const onChange = (e) =>{
-        setSearch = (e.target.value);
-    }
+        setSearch(e.target.value);
+    };
 
     const onClick = async (e) =>{
         const data = await searchPokemon(search);
