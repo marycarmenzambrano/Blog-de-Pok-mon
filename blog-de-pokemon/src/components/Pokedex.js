@@ -2,7 +2,7 @@ import React from "react";
 import Pokemon from "./Pokemon";
 
 const Pokedex = (props) => {
-    const {pokemons} = (props);
+    const {pokemons} = props;
     return(
         <div>
             <div className="header">
