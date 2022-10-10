@@ -46,9 +46,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (!searching) {
       fetchPokemons();
-    }
   }, [page]);
 
   const updateFavoritePokemons = (name) => {
@@ -63,26 +61,7 @@ export default function App() {
     window.localStorage.setItem(localStorageKey, JSON.stringify(updated));
   };
 
-  const onSearch = async (pokemon) => {
-    if (!pokemon) {
-      return fetchPokemons();
-    }
-    setLoading(true);
-    setNotFound(false);
-    setSearching(true);
-    const result = await searchPokemon(pokemon);
-    if (!result) {
-      setNotFound(true);
-      setLoading(false);
-      return;
-    } else {
-      setPokemons([result]);
-      setPage(0);
-      setTotal(1);
-    }
-    setLoading(false);
-    setSearching(false);
-  };
+ 
 
   return (
     <FavoriteProvider
@@ -94,12 +73,7 @@ export default function App() {
       <div>
         <Navbar />
         <div className="App">
-          <Searchbar onSearch={onSearch} />
-          {notFound ? (
-            <div className="not-found-text">
-              No se encontro el Pokemon que buscabas 😭
-            </div>
-          ) : (
+          <Searchbar />
             <Pokedex
               loading={loading}
               pokemons={pokemons}
@@ -107,9 +81,7 @@ export default function App() {
               setPage={setPage}
               total={total}
             />
-          )}
         </div>
-     
       </div>
     </FavoriteProvider>
   );
