@@ -11,7 +11,7 @@ const Pokedex = (props) => {
     };
 
     const nextPage = () => {
-        const nextPage = Math.min(page + 1, total);
+        const nextPage = Math.min(page + 1, total - 1);
         setPage(nextPage);
     };
 
@@ -27,15 +27,15 @@ const Pokedex = (props) => {
                     onRightClick={nextPage}
                 />
             </div>
-            {loading ?
+            {loading ? (
                 <div>Buscando Pokemones</div>
-                :
+            ) : (
                 <div className="pokedex-grid">
                     {pokemons.map((pokemon, idx) => {
-                        return (<Pokemon pokemon={pokemon} key={pokemon.name} />);
+                        return <Pokemon pokemon={pokemon} key={pokemon.name} />;
                     })}
                 </div>
-            };
+            )}
         </div>
     );
 };
