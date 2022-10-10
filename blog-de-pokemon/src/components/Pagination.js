@@ -8,7 +8,6 @@ const Pagination = (props) => {
     <div className="pagination">
       <button className="pagination-btn" onClick={onLeftClick}>
         <div className="icon">
-          <LeftArrow />
         </div>
       </button>
       <div>
@@ -16,7 +15,6 @@ const Pagination = (props) => {
       </div>
       <button className="pagination-btn" onClick={onRightClick}>
         <div className="icon">
-          <RightArrow />
         </div>
       </button>
     </div>

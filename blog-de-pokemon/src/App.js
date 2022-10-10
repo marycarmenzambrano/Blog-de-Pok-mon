@@ -1,10 +1,10 @@
 import React from "react";
-import "./styles.css";
-import Navbar from "../components/Navbar";
-import Searchbar from "../components/Searchbar";
-import Pokedex from "../components/Pokedex";
-import { getPokemonData, getPokemons, searchPokemon } from "../api";
-import { FavoriteProvider } from "../contexts/favoritesContext";
+import "./App.js";
+import Navbar from "./components/Navbar";
+import Searchbar from "./components/Searchbar";
+import Pokedex from "./components/Pokedex";
+import { getPokemonData, getPokemons, searchPokemon } from "./api";
+import { FavoriteProvider } from "./contexts/favoritesContext";
 
 
 const { useState, useEffect } = React;
