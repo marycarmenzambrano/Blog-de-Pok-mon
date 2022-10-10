@@ -7,6 +7,7 @@ import { getPokemonData, getPokemons, searchPokemon } from "./api";
 import { FavoriteProvider } from "./contexts/favoritesContext";
 
 
+
 const {useState, useEffect} = React;
 
 const localStorageKey ="favorite_pokemon";
@@ -55,7 +56,7 @@ export default function App() {
   const updateFavoritePokemons = (name) => {
     const updated = [...favorites];
     const isFavorite = updated.indexOf(name);
-    if(isFavorite >= 0) {
+    if (isFavorite >= 0) {
       updated.splice(isFavorite, 1);
     } else{
       updated.push(name);
@@ -111,7 +112,7 @@ export default function App() {
       />
      )}
     </div>
-
+    
     </div>
     </FavoriteProvider>
   );

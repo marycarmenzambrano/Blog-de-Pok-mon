@@ -14,7 +14,7 @@ const Navbar = () => {
      <nav>
         <div/>
             <div>
-        <img src= {imgUrl} alt= "pokeapi-logo" className="navbar-image" ></img>
+        <img src= {imgUrl} alt= "pokeapi-logo" className="navbar-image"/>
             </div>
         <div>❤️{favoritePokemons.length}</div>
     </nav>
