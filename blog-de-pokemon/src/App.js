@@ -1,41 +1,43 @@
 import React from "react";
 import "./App.css";
-import Navabr from "./components/Navbar";
-import Searchbar from "./components/Searchbar";
+import Navbar from "./components/Navbar";
 import Pokedex from "./components/Pokedex";
+import Searchbar from "./components/Searchbar";
 import { getPokemons } from "./api";
 
-
-const { useState, useEffect } = React;
+const {useState, useEffect} = React;
 
 export default function App() {
   const [pokemons, setPokemons] = useState([]);
 
-  const ferchPokemons = async () => {
+  
+  const fetchPokemons = async () => {
     try {
-        const data = await getPokemons();
-        console.log(data.results);
-        setPokemons(data.results);
+      const data =await getPokemons();
+      setPokemons(data.results);
+
     } catch(err){
 
     }
+
   }
 
 
-  useEffect(() => {
-    ferchPokemons();
-  },[]);
+  useEffect(() =>{
+    fetchPokemons();
+  }, []);
 
-
-
-  return(
+  return (
     <div>
-      <Navabr/>
+      <Navbar/>
+    <div>
       <div className="App">
         <Searchbar/>
         <Pokedex pokemons={pokemons}/>
 
+
       </div>
+    </div>
     </div>
   );
 }
