@@ -1,89 +1,43 @@
 import React from "react";
-import "./App.js";
-import Navbar from "./components/Navbar";
+import "./App.css";
+import Navabr from "./components/Navbar";
 import Searchbar from "./components/Searchbar";
 import Pokedex from "./components/Pokedex";
-import { getPokemonData, getPokemons, searchPokemon } from "./api";
-import { FavoriteProvider } from "./contexts/favoritesContext";
+import { getPokemons } from "./api";
 
 
 const { useState, useEffect } = React;
 
-const localStorageKey = "favorite_pokemon";
-
 export default function App() {
   const [pokemons, setPokemons] = useState([]);
-  const [page, setPage] = useState(0);
-  const [total, setTotal] = useState(0);
-  const [loading, setLoading] = useState(true);
-  const [favorites, setFavorites] = useState([]);
-  const [notFound, setNotFound] = useState(false);
-  const [searching, setSearching] = useState(false);
 
-  const fetchPokemons = async () => {
+  const ferchPokemons = async () => {
     try {
-      setLoading(true);
-      const data = await getPokemons(25, 25 * page);
-      const promises = data.results.map(async (pokemon) => {
-        return await getPokemonData(pokemon.url);
-      });
-      const results = await Promise.all(promises);
-      setPokemons(results);
-      setLoading(false);
-      setTotal(Math.ceil(data.count / 25));
-      setNotFound(false);
-    } catch (err) {}
-  };
+        const data = await getPokemons();
+        console.log(data.results);
+        setPokemons(data.results);
+    } catch(err){
 
-  const loadFavoritePokemons = () => {
-    const pokemons =
-      JSON.parse(window.localStorage.getItem(localStorageKey)) || [];
-    setFavorites(pokemons);
-  };
-
-  useEffect(() => {
-    loadFavoritePokemons();
-  }, []);
-
-  useEffect(() => {
-      fetchPokemons();
-  }, [page]);
-
-  const updateFavoritePokemons = (name) => {
-    const updated = [...favorites];
-    const isFavorite = updated.indexOf(name);
-    if (isFavorite >= 0) {
-      updated.splice(isFavorite, 1);
-    } else {
-      updated.push(name);
     }
-    setFavorites(updated);
-    window.localStorage.setItem(localStorageKey, JSON.stringify(updated));
-  };
+  }
 
- 
 
-  return (
-    <FavoriteProvider
-      value={{
-        favoritePokemons: favorites,
-        updateFavoritePokemons: updateFavoritePokemons
-      }}
-    >
-      <div>
-        <Navbar />
-        <div className="App">
-          <Searchbar />
-            <Pokedex
-              loading={loading}
-              pokemons={pokemons}
-              page={page}
-              setPage={setPage}
-              total={total}
-            />
-        </div>
+  useEffect(() => {
+    ferchPokemons();
+  },[]);
+
+
+
+  return(
+    <div>
+      <Navabr/>
+      <div className="App">
+        <Searchbar/>
+        <Pokedex pokemons={pokemons}/>
+
       </div>
-    </FavoriteProvider>
+    </div>
   );
 }
+
 
