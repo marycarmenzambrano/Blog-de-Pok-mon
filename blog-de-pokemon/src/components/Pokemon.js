@@ -2,7 +2,11 @@ import React from "react";
 
 const Pokemon = (props) => {
     const { pokemon } = props;
-    console.log(pokemon);
+
+
+    const yellowHeart ="💛";
+    const blackHeart = "🖤";
+
     return (
         <div className="pokemon-card">
             <div className="pokemon-img-container">
@@ -25,7 +29,9 @@ const Pokemon = (props) => {
                             )
                         })}
                     </div>
-                    <div className="pokemon-favorite">💛</div>
+                        <button>
+                    <div className="pokemon-favorite">{blackHeart}</div>
+                    </button>
                 </div>
             </dvi>
 
