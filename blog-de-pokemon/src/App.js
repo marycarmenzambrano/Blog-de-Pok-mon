@@ -9,6 +9,9 @@ const {useState, useEffect} = React;
 
 export default function App() {
   const [pokemons, setPokemons] = useState([]);
+  const [page, setPage] = useState();
+  const [total, setTotal] = useState();
+  const [loading, setLoading] = useState(true);
 
   
   const fetchPokemons = async () => {
@@ -20,6 +23,7 @@ export default function App() {
       })
       const results = await Promise.all (promises)
       setPokemons(results)
+      setLoading(false);
     } catch(err){
 
     }
@@ -39,8 +43,10 @@ export default function App() {
     <div>
       <div className="App">
         <Searchbar/>
+        { loading ? <div>Cargando Pokemonoes</div>
+        :
         <Pokedex pokemons={pokemons}/>
-
+      }
 
       </div>
     </div>

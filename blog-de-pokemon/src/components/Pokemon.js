@@ -25,7 +25,7 @@ const Pokemon = (props) => {
                             )
                         })}
                     </div>
-                    <div className="pokemon-favorite">🖤</div>
+                    <div className="pokemon-favorite">💛</div>
                 </div>
             </dvi>
 

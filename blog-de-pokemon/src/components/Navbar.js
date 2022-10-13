@@ -9,9 +9,9 @@ let imgUrl = "https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeap
         <nav>
             <div/>
             <div>
-            <img src= {imgUrl} all="pokeapi-logo"className="navbar-image" />
+            <img src= {imgUrl} all="pokeapi-logo"className="navbar-image"/>
             </div>
-            <div>🖤</div>
+            <div>❤️</div>
         </nav>
     );
 };
