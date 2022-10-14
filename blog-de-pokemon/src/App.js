@@ -64,6 +64,7 @@ const loadFavoritePokemons = () => {
       return fetchPokemons();
     }
     setLoading(true);
+    setNotFound(false);
     const result = await searchPokemon(pokemon);
     if(!result) {
       setNotFound(true);
