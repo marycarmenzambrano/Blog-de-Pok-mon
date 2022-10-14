@@ -3,7 +3,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Pokedex from "./components/Pokedex";
 import Searchbar from "./components/Searchbar";
-import { getPokemonData, getPokemons, searchPokemon } from "./api";
+import { getPokemonData, getPokemons, searchPokemon, } from "./api";
 import { FavoriteProvider } from "./contexts/favoritesContext";
 
 const {useState, useEffect} = React;
@@ -16,18 +16,20 @@ export default function App() {
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const [favorites, setFavorites] = useState([]);
+  const [notFound, setNotFound] = useState(false);
   
   const fetchPokemons = async () => {
     try {
       setLoading(true);
       const data =await getPokemons(25, 25 * page);
       const promises = data.results.map(async (pokemon) => {
-        return await getPokemonData(pokemon.url)
+        return await getPokemonData(pokemon.url);
       })
-      const results = await Promise.all (promises)
-      setPokemons(results)
+      const results = await Promise.all (promises);
+      setPokemons(results);
       setLoading(false);
-      setTotal(Math.ceil(data.count / 25))
+      setTotal(Math.ceil(data.count / 25));
+      setNotFound(false);
     } catch(err) {}
   };
 
@@ -42,7 +44,6 @@ const loadFavoritePokemons = () => {
   },[]);
 
   useEffect(() =>{
-    console.log('obteniendo todos favorites');
     fetchPokemons();
   }, [page]);
 
@@ -55,6 +56,26 @@ const loadFavoritePokemons = () => {
       updated.push(name);
     }
     setFavorites(updated);
+    window.localStorage.setItem(localStorageKey, JSON.stringify(updated));
+  };
+
+  const onSearch = async (pokemon) => {
+    if(!pokemon) {
+      return fetchPokemons();
+    }
+    setLoading(true);
+    const result = await searchPokemon(pokemon);
+    if(!result) {
+      setNotFound(true);
+      setLoading(false);
+      return;
+    } else {
+      setPokemons([result]);
+      setPage(0);
+      setTotal(1);
+    }
+    
+    setLoading(false);
   };
 
   return (
@@ -68,7 +89,10 @@ const loadFavoritePokemons = () => {
       <Navbar/>
     <div>
       <div className="App">
-        <Searchbar/>
+        <Searchbar onSearch={onSearch}/>
+        {notFound ? (
+          <div className="not-found-text">No se encontro Pokemon</div>
+        ) : (
         <Pokedex 
         loading={loading}
         pokemons={pokemons}
@@ -76,6 +100,7 @@ const loadFavoritePokemons = () => {
         setPage={setPage}
         total={total}
         />
+        )}
       </div>
     </div>
     </div>
