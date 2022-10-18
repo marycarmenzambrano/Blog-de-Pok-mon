@@ -17,7 +17,8 @@ let imgUrl = "https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeap
             <div>
             <img src= {imgUrl} all="pokeapi-logo"className="navbar-image"/>
             </div>
-            <div>❤️{favoritePokemons.length}</div>
+            <div>
+                <button>{favoritePokemons.length}❤️</button></div>
         </nav>
     );
 };
